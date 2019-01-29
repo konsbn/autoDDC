@@ -18,7 +18,9 @@ class ISBNError(Exception):
 
 def _page_getter(isbn):
     '''
-    Gets the current page for the given ISBN and returns the page.
+    Gets the current page for the given ISBN
+    Input : ISBN
+    Output : Webpage for ISBN from OCLC
     '''
     url = "http://classify.oclc.org"
     url1 = url + "/classify2/ClassifyDemo?search-standnum-txt=" + \
