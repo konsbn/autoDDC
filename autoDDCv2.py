@@ -18,15 +18,27 @@ class ISBNError(Exception):
 
 def _page_getter(isbn):
     '''
-    Gets the current page for the given ISBN
-    Input : ISBN
-    Output : Webpage for ISBN from OCLC
+    Gets the current page for the given ISBN and returns the page.
     '''
     url = "http://classify.oclc.org"
     url1 = url + "/classify2/ClassifyDemo?search-standnum-txt=" + \
         str(isbn) + "&startRec=0"
     browser.open(url1)
     return browser.get_current_page()
+
+
+def _table_getter(page, ids='classSummaryData'):
+    '''
+    Extracts the body of the table from the webpage
+    Input:
+        page : Current Opened Webpage
+        ids  : The table id for the table to be extracted
+               default - classSummaryData
+    Output:
+        Table body of desired table id
+
+    '''
+    return page.find('table', {'id': ids}).find('tbody')
 
 
 def isValid(isbn):
