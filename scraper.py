@@ -18,7 +18,7 @@ class scrapertools:
         '''
         Returns the current page of the url to be opened
         '''
-        self.base_url = '/'.join(url.split('/')[:-1])
+        self.base_url = '/'.join(url.split('/')[:-1])  # Gets the base url
         self.browser.open(url)
         self.page = self.browser.get_current_page()
 
@@ -35,9 +35,10 @@ class scrapertools:
         Gets the tables based on id from the current page.
         '''
 
-        table = self.page.find('table', {'id': ids})
-        head = table.find('thead')
-        body = table.find('tbody')
+        table = self.page.find('table', {'id': ids})  # Finds table by id
+        head = table.find('thead')  # Finds the table head
+        body = table.find('tbody')  # Finds the body of the table
+        # Extracts the headers from table head
         headers = [tag.string for tag in head.find_all('th')]
         body = [entry.find_all('td')for entry in body.find_all('tr')]
         if [] in body:
