@@ -15,15 +15,30 @@ class ISBNError(Exception):
         self.message = message
 
 
-def _page_getter(isbn):
+getter = scrapertools()
+
+
+def ddc(isbn):
     '''
-    Gets the current page for the given ISBN and returns the page.
+    Gets the Dewey Decimal Classification given isbn
+    Input
+    >>> isbn
+    Output
+    DDC
     '''
     url = "http://classify.oclc.org"
     url1 = url + "/classify2/ClassifyDemo?search-standnum-txt=" + \
         str(isbn) + "&startRec=0"
-    browser.open(url1)
-    return browser.get_current_page()
+    getter.page_getter(url1)
+    try:
+        cat = getter.table_getter('classSummaryData')
+    # if cat is not None:
+    #     return cat
+    # else:
+    #     links = getter.table_getter('results-table')
+    except AttributeError:
+        links = getter.table_getter('results-table')
+        return links
 
 
 def isValid(isbn):
@@ -86,3 +101,9 @@ def GetAllCategory():
         ddc_class, genre = i.split(' ')[0], ' '.join(i.split(' ')[1:])
         Complete_DDC_Categories.update(OrderedDict([(ddc_class, genre)]))
     return(Complete_DDC_Categories)
+
+
+def make_ddc_db(path='./'):
+    '''
+    Gets the DDC_Categories if not found in the path and stores it for easy access
+    '''
