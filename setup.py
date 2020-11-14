@@ -11,7 +11,7 @@ setup(
     packages=['autoDDC'],
     install_requires=['mechanicalsoup',
                       'isbntools',
-                      ],https://github.com/konsbn/autoDDC
+                      ],
     classifiers=[
         'Intended Audience :: Book Collectors/Libraries',
         'Programming Language :: Python :: 3',
