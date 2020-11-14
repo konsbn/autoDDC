@@ -1,0 +1,8 @@
+from setuptools import setup
+
+setup(
+    name='autoDDC',
+    version='0.1',
+    description='An ISBN based Dewey Decimal Classifier'
+    url='www.gi'
+)

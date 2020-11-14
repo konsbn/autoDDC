@@ -9,6 +9,9 @@ if __name__ == '__main__':
         try:
             isbn = input('ISBN: ')
             data = wrapper(isbn)
+            if data == f'No Entry for {isbn}':
+                print(data)
+                continue
             data = {i: [data[i]] for i in data.keys()}
             print()
             print(tabulate(data, headers='keys'))
