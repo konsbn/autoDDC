@@ -2,3 +2,4 @@
 .#__init__.py
 #.gitignore#
 autoDDC/__pycache__
+.gitignore~
